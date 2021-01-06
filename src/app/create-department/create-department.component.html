@@ -1,0 +1,177 @@
+
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-12 ml-auto pt-3 pl-md-5 pl-new bg-white-row pt-3">
+
+      <div class="content">
+        <!--content inner-->
+        <div class="content__inner">
+
+          <div> 
+            <div class="multisteps-form"> 
+              </div>  
+              <div class="row"> 
+                <div class="col-12 col-lg-9 m-auto">
+                  <div class="tab" (click)="tabChange($event)">
+                    <button class="tablinks text-uppercase" [ngClass]="{'active':switchCase == 'addJob'}">Add Job</button>
+                    <button class="tablinks text-uppercase" [ngClass]="{'active':switchCase == 'addUser'}">Add User</button>
+                    <button class="tablinks text-uppercase" [ngClass]="{'active':switchCase == 'addDept'}">Add Department</button>
+                    <button class="tablinks text-uppercase" [ngClass]="{'active':switchCase == 'addProject'}">Add Project</button>
+
+                    <button class="tablinks text-uppercase float-right active">BACK</button>
+                  </div>
+
+                  <div [ngSwitch]="switchCase">
+                  <form class="multisteps-form__form" [formGroup]="addJob" *ngSwitchCase="'addJob'">
+                    <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                      <h5 class="multisteps-form__title">CREATE JOB</h5>
+                      <div class="multisteps-form__content">
+                        <div class="form-row mt-4">
+
+
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                              <label>Employee</label>
+                              <select class="form-control rounded-0" id="sel1" formControlName="employee">
+                                <option [ngValue]="null" disabled selected="true">Select Employee</option>
+                                <option *ngFor="let ct of userList" [value]="ct.id">{{ct.username}}</option>
+                              </select>
+                            </div>
+                            <div *ngIf="j.employee.errors" class="invalid-feedback">
+                              <div *ngIf="j.employee.touched && j.employee.errors.required">Please Select Employee</div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                              <label>Department</label>
+                              <select class="form-control rounded-0" id="sel1" formControlName="department">
+                                <option [ngValue]="null" disabled selected="true">Select Department</option>
+                                <option *ngFor="let ct of DeptList" [value]="ct.id">{{ct.department}}</option>
+                              </select>
+                            </div>
+                            <div *ngIf="j.department.errors" class="invalid-feedback">
+                              <div *ngIf="j.department.touched && j.department.errors.required">Please Select Department</div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                              <label>Project </label>
+                              <select class="form-control rounded-0" id="sel1" formControlName="project">
+                                <option [ngValue]="null" disabled selected="true">Select Project</option>
+                                <option *ngFor="let ct of projectList" [value]="ct.id">{{ct.project}}</option>
+                              </select>
+                            </div>
+                            <div *ngIf="j.project.errors" class="invalid-feedback">
+                              <div *ngIf="j.project.touched && j.project.errors.required">Please Select Project</div>
+                            </div>
+                          </div>
+
+                          
+                        </div>
+                        <div class="button-row d-flex mt-4">
+                          <button class="btn btn-primary btn-lg ml-auto js-btn-next rounded-0" type="submit" title="Next" (click)="addJobs()">SUBMIT</button>
+                        </div> 
+                      </div>
+                    </div>
+
+                  </form>
+
+                   <form class="multisteps-form__form" [formGroup]="addDept" *ngSwitchCase="'addDept'">
+                    <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn" >
+                      <h5 class="multisteps-form__title">CREATE DEPARTMENT</h5>
+                      <div class="multisteps-form__content">
+                        <div class="form-row mt-4">
+
+
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                              <label>Enter a Department</label>
+                              <input class="multisteps-form__input form-control rounded-0" type="text" placehoPolycliniclder="Enter a title" formControlName='department' />
+                            </div>
+                            <div *ngIf="f?.department.errors" class="invalid-feedback">
+                              <div *ngIf="f?.department.touched && f?.department.errors.required">Please Enter department
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="button-row d-flex mt-4">
+                          <button class="btn btn-primary btn-lg ml-auto js-btn-next rounded-0" type="submit"
+                            title="Next" (click)="addDepts()">SUBMIT</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </form>
+
+                 <form class="multisteps-form__form" [formGroup]="addproject" *ngSwitchCase="'addProject'">
+                    <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn" >
+                      <h5 class="multisteps-form__title">CREATE PROJECT</h5>
+                      <div class="multisteps-form__content">
+                        <div class="form-row mt-4">
+
+
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                              <label>Enter a Project</label>
+                              <input class="multisteps-form__input form-control rounded-0" type="text"
+                                placehoPolycliniclder="Enter a title" formControlName="project" />
+                            </div>
+                            <div *ngIf="p.project.errors" class="invalid-feedback">
+                              <div *ngIf="p.project.touched && p.project.errors.required">Please Enter project
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="button-row d-flex mt-4">
+                          <button class="btn btn-primary btn-lg ml-auto js-btn-next rounded-0" type="submit"
+                            title="Next" (click)="addProjects()">SUBMIT</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </form>
+
+                  <form class="multisteps-form__form" [formGroup]="addUser" *ngSwitchCase="'addUser'">
+                    <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn" >
+                      <h5 class="multisteps-form__title">CREATE USER</h5>
+                      <div class="multisteps-form__content">
+                        <div class="form-row mt-4">
+
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                              <label>Enter a name</label>
+                              <input class="multisteps-form__input form-control rounded-0" type="text"
+                                placehoPolycliniclder="Enter a title" formControlName="name" />
+                            </div>
+                            <div *ngIf="u.name.errors" class="invalid-feedback">
+                              <div *ngIf="u.name.touched && u.name.errors.required">Please Enter email
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                              <label>Enter a email</label>
+                              <input class="multisteps-form__input form-control rounded-0" type="email"
+                                placehoPolycliniclder="Enter a title" formControlName="email" />
+                            </div>
+                            <div *ngIf="u.email.errors" class="invalid-feedback">
+                              <div *ngIf="u.email.touched && u.email.errors.required">Please Enter email
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="button-row d-flex mt-4">
+                          <button class="btn btn-primary btn-lg ml-auto js-btn-next rounded-0" type="submit"
+                            title="Next" (click)="addUsers()">SUBMIT</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+                </div>
+              </div>
